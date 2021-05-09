@@ -15,17 +15,8 @@ browser.get("https://opensource-demo.orangehrmlive.com")
 # # browser.find_element_by_id("txtPassword").send_keys("admin123")
 # # browser.find_element_by_class_name("button").click()
 # # Quit is the method of Stopping the application
-browser.find_element(By.XPATH, "//input[@id='txtUsername']").send_keys("Admin")
-browser.find_element(
-    By.CSS_SELECTOR, "input[type='password']").send_keys("admin123")
-browser.find_element(By.XPATH, "//input[@value='LOGIN']").click()
-# Checking if current url contain somekeyword in this case Dashboard
-assert "dashboard" in browser.current_url
-print("URL after login is : ", browser.current_url)
-browser.find_element(By.XPATH, "//a[contains(text(),'Welcome')]").click()
-time.sleep(4)
-browser.find_element(By.XPATH, "//a[contains(text(),'Logout')]").click()
-assert "login" in browser.current_url
-print("URL after logout is : ", browser.current_url)
+# forgetLink = browser.find_element(By.LINK_TEXT, "Forgot your password?")
+forgetLink = browser.find_element(By.PARTIAL_LINK_TEXT, "Forgot your")
+forgetLink.click()
 
 browser.quit()
