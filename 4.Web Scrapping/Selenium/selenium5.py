@@ -3,8 +3,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 import time
+from webdriver_manager.chrome import ChromeDriverManager
 
-browser = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
+
+browser = webdriver.Chrome(ChromeDriverManager().install())
 
 browser.maximize_window()
 browser.get("https://www.facebook.com")
