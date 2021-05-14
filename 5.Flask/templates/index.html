@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello Template</h1>
+  {% if number > 10 %}
+    <p>{{number}} is greater than 10.</p>
+  {% else %}
+    <p>{{number}} is lesser than 10.</p>
+  {% endif %}
+
+  {% for fruit in allFruits %}
+    <h2>{{fruit}}</h2>
+  {% endfor %}
+
+
+  <form method="POST" action="/submit">
+    <input type="text" name="username" placeholder="Enter Your Name" >
+    <input type="submit" >
+  </form>
+
+</body>
+</html>
