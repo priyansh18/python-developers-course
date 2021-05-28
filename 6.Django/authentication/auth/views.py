@@ -4,7 +4,17 @@ from django.shortcuts import render
 from .forms import LoginForm
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.views import LoginView,LogoutView
 # Create your views here.
+
+class AuthLogin(LoginView):
+    template_name = 'auth/login.html'
+    redirect_authenticated_user = True
+
+class AuthLogout(LogoutView):
+    pass
+
+
 def auth_login(request):
     form = LoginForm()
     error = None
