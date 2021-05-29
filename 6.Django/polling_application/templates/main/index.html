@@ -15,7 +15,7 @@
     <div class="col-6">
       <div class="collection">
         {% for question in question_list %}
-        <a href="#!" class="collection-item">{{question.content}}</a>
+        <a href="{% url 'question' question.slug %}" class="collection-item">{{question.content}}</a>
         {% endfor %}
       </div>
     </div>
