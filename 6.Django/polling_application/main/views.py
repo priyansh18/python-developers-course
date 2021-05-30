@@ -4,6 +4,7 @@ from django.views.generic import ListView,DetailView,FormView
 from .models import Answer, Question,Choice
 from django.views.generic.detail import SingleObjectMixin
 from .forms import AnswerForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
@@ -12,10 +13,11 @@ class Index(ListView):
     template_name = 'main/index.html'
     # Default context object name is smallm model name _ list i.e. question_list 
     
-class Question(FormView,SingleObjectMixin):
+class Question(PermissionRequiredMixin,FormView,SingleObjectMixin):
     model = Question
     template_name = 'main/question.html'
     form_class = AnswerForm
+    permission_required = ['add_answer']
 
     def form_valid(self, form):
         # Save in memory but not commit in database
