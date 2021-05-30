@@ -1,7 +1,7 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,FormView
-from .models import Question,Choice
+from .models import Answer, Question,Choice
 from django.views.generic.detail import SingleObjectMixin
 from .forms import AnswerForm
 
@@ -26,6 +26,19 @@ class Question(FormView,SingleObjectMixin):
         # Commit in database
         obj.save()
         return HttpResponseRedirect('/')
+
+    # Overriding Context data
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        try:
+            data['answer'] = Answer.objects.get(
+                question = self.get_object(),
+                user = self.request.user
+            )
+        except:
+            data['answer'] = None
+        return data
+
 
     def post(self, request, *args, **kwargs):
         self.object =self.get_object()
