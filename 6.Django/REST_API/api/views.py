@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import StudentSerializer 
+from .models import Article
+from .serializers import StudentSerializer,ArticleSerializer
 
 # Create your views here.
 # Using of api_view decorators convert list or object into type-JSON
@@ -10,6 +11,14 @@ class Student:
         self.name = name
         self.roll_no = roll_no
         self.marks = marks
+
+
+# Decorator for converting view into API view
+@api_view()
+def articleApi(request):
+    articles = Article.objects.all()
+    response = ArticleSerializer(articles,many=True)
+    return Response(response.data)
 
 @api_view()
 def usersApi(request):
