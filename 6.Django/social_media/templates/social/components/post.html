@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-image">
+    {% if post.image %}
+    <img src="{{post.image}}">
+    {% endif %}
+  </div> 
+  <div class="card-content">
+    <span class="card-title">{{post.user.first_name}} {{post.user.last_name}}</span>
+    <p>{{post.content}}.</p>
+    <span >{{post.created_at}}</span>
+  </div>
+  <div class="card-action">
+    <a href="#">{{post.like_set.count}} Like</a>
+    <a class="modal-trigger" href="#postModal{{post.id}}">{{post.comment_set.count}} Comment </a>
+  </div>
+</div>
+
+<div id="postModal{{post.id}}" class="modal" >
+  <div class="modal-content">
+    <h4 style="text-align: center; font-weight: bold;">Comments</h4>
+    <ul>
+      {% for comment in post.comment_set.all %}
+        <li>{{comment.user.first_name}} - {{comment.content}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
