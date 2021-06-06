@@ -10,7 +10,7 @@
     <span >{{post.created_at}}</span>
   </div>
   <div class="card-action">
-    <a href="#">{{post.like_set.count}} Like</a>
+    <a href="#" onclick="likePost({{post.id}});">{{post.like_set.count}} Like</a>
     <a class="modal-trigger" href="#postModal{{post.id}}">{{post.comment_set.count}} Comment </a>
   </div>
 </div>
@@ -23,5 +23,10 @@
         <li>{{comment.user.first_name}} - {{comment.content}}</li>
       {% endfor %}
     </ul>
+    <form class="input-field" onsubmit="commentPost({{post.id}},document.getElementById('comment{{post.id}}').value);">
+      <input placeholder="Add Comments" id="comment{{post.id}}" type="text" class="validate">
+      <label for="comment{{post.id}}">Comment</label>
+      <button type="submit" class="btn waves-effect">Submit</button>
+    </form>
   </div>
 </div>
